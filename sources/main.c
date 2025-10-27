@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:04:13 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 14:04:50 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:04:22 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ int main(int argc, char **argv)
     cub = malloc(sizeof(t_cub));
     if (!cub)
         return (printf("Error\nMalloc failed"), 1);
-    init_all(cub);
+    if (!init_all(cub))
+    {
+        ft_free_all(cub);
+        free(cub);
+        return (1);
+    }
     cub->file = load_file(argv[1], cub);
     cub->info_map = load_info(cub->file, cub);
     cub->map = load_map(cub->file, cub);
@@ -43,12 +48,20 @@ int main(int argc, char **argv)
         printf("%s", cub->map[i]);
         i++;
     }
-    directions_texture(cub->info_map, cub);
+    if (!directions_texture(cub->info_map, cub))
+    {
+        ft_free_all(cub);
+        exit (0);
+    }
     printf("\n=============================\n");
     printf("NO = %s\n", cub->NO);
     printf("SO = %s\n", cub->SO);
     printf("WE = %s\n", cub->WE);
     printf("EA = %s\n", cub->EA);
+    
+    printf("\n=============================\n");
+    printf("floor = %s\n", cub->floor);
+    printf("celling = %s\n", cub->celling);
     ft_free_all(cub);
     free(cub);
     return (0);

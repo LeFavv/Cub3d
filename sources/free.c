@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:03:49 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 13:58:27 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:00:55 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,31 @@ void    ft_free_all(t_cub *cub)
         ft_free(cub->WE);
         cub->WE = NULL;   
     }
+    if (cub->floor)
+    {
+        ft_free(cub->floor);
+        cub->floor = NULL;   
+    }
+    if (cub->celling)
+    {
+        ft_free(cub->celling);
+        cub->celling = NULL;   
+    }
+    if (cub->C)
+    {
+        ft_free_int_tab(cub->C);
+    }
+    if (cub->F)
+    {
+        ft_free_int_tab(cub->F);
+    }
     // ft_free(cub->info_map);
     // ft_free(cub->map);
+}
+
+void    ft_free_int_tab(int *tab)
+{
+    free(tab);
 }
 
 void    ft_free_tab(char **tab)

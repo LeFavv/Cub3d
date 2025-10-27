@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:39:31 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 14:20:28 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:38:41 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,45 @@ int		fill_direction(int index, char *file, t_cub *cub);
 void	fill_direction_2(t_cub *cub, int index, char *line);
 int		is_valid(char *file);
 int		directions_texture(char **file, t_cub *cub);
+void	fill_floor_celling_2(t_cub *cub, int index, char *line);
+
+
+int	fill_floor_celling(int index, char *file, t_cub *cub)
+{
+	char	*line;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	// printf("je rentre la\n");
+	while (!(file[i] >= '0' && file[i] <= '9'))
+		i++;
+	while (file[i + j])
+		j++;
+	line = malloc(sizeof(char) * (j + 1));
+	if (!line)
+		return (printf("Error\nMalloc failed\n"), 0);
+	j = 0;
+	while (file[i])
+	{
+		line[j] = file[i];
+		i++;
+		j++;
+	}
+	line[j] = '\0';
+	// printf("\n%s\n", line);
+	fill_floor_celling_2(cub, index, line);
+	return (1);
+}
+
+void	fill_floor_celling_2(t_cub *cub, int index, char *line)
+{
+	if (index == 5)
+		cub->floor = line;
+	else if (index == 6)
+		cub->celling = line;
+}
 
 int		is_valid(char *file)
 {
@@ -34,6 +73,10 @@ int		is_valid(char *file)
 		return (3);
 	else if (ft_strncmp(file, "EA", 2) == 0)
 		return (4);
+	else if (ft_strncmp(file, "F", 1) == 0)
+		return (5);
+	else if (ft_strncmp(file, "C", 1) == 0)
+		return (6);
 	return (0);
 }
 
@@ -47,36 +90,15 @@ void	fill_direction_2(t_cub *cub, int index, char *line)
 		cub->WE = line;
 	else if (index == 4)
 		cub->EA = line;
-		
+	// else if (index == 5)
+	// 	cub->floor = line;
+	// else if (index == 6)
+	// 	cub->celling = line;
 	// printf("\nfunc NO = %s\n", cub->NO);
     // printf("func SO = %s\n", cub->SO);
     // printf("func WE = %s\n", cub->WE);
     // printf("func EA = %s\n", cub->EA);
 }
-
-// void	fill_direction_2(t_cub *cub, int index, char *line)
-// {
-// 	if (index == 1)
-// 	{
-// 		cub->NO = ft_strdup(line);
-// 		free(line);	
-// 	}
-// 	else if (index  == 2)
-// 	{
-// 		cub->SO = ft_strdup(line);
-// 		free(line);	
-// 	}
-// 	else if (index == 3)
-// 	{
-// 		cub->WE = ft_strdup(line);
-// 		free(line);	
-// 	}
-// 	else if (index == 4)
-// 	{
-// 		cub->EA = ft_strdup(line);
-// 		free(line);	
-// 	}
-// }
 
 int	fill_direction(int index,char *file, t_cub *cub)
 {
@@ -105,26 +127,23 @@ int	fill_direction(int index,char *file, t_cub *cub)
 	return (1);
 }
 
-int	directions_texture(char **file, t_cub *cub) //gerer en cas de return 0 pour stopper le programme
+int	directions_texture(char **file, t_cub *cub)
 {
 	int i;
-	int	j;
-	int	k;
 	int index;
 
-	j = 0;
-	k = 0;
 	i = 0;
 	while (cub->info_map[i])
 	{
 		if (is_valid(cub->info_map[i]))
 		{
 			index = is_valid(cub->info_map[i]);
-			// while (file[i][j] != '.')
-			// 	j++;
-			// while (file[i][j + k])
-			// 	k++;
-			if (!fill_direction(index, file[i], cub))
+			if (index >= 5)
+			{
+				if (!fill_floor_celling(index, file[i], cub))
+					return (ft_free_all(cub), 0);
+			}
+			else if (!fill_direction(index, file[i], cub))
 			{
 				ft_free_all(cub);
 				return (0);
