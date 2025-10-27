@@ -6,11 +6,11 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 10:24:04 by vafavard          #+#    #+#             */
-/*   Updated: 2025/07/13 12:45:10 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 11:10:17 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/get_next_line.h"
 
 static char	*check_newline_and_extract_line(char **stash)
 {

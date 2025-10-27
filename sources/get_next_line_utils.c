@@ -6,12 +6,11 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 20:47:55 by vafavard          #+#    #+#             */
-/*   Updated: 2025/07/13 12:45:15 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 11:10:26 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "so_long.h"
+#include "../includes/get_next_line.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
