@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:41:17 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 15:01:11 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:55:29 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,19 @@ void	fill_direction_2(t_cub *cub, int index, char *line);
 int		is_valid(char *file);
 int     directions_texture(char **file, t_cub *cub);
 void    ft_free_int_tab(int *tab);
+int		fill_floor_celling(int index, char *file, t_cub *cub);
+void	fill_floor_celling_2(t_cub *cub, int index, char *line);
+int		check_rgb_str(t_cub *cub);
+int		check_rgb_str_2(t_cub *cub);
+int		ft_atoi(char *str);
+void	ft_check_colours_1(t_cub *cub);
+void	ft_check_colours_2(t_cub *cub);
+
+
+int		ft_count_word(char const *s, char c);
+char	*ft_malloc(char const *s, int start, int end);
+char	**ft_split(char const *s, char c);
+void	ft_free_all_split(char **tab, int last);
+int		extern_loop(const char *s, int i, char c, int flag);
 
 #endif

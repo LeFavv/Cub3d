@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:04:13 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 15:04:22 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:54:43 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,26 @@ int main(int argc, char **argv)
     printf("\n=============================\n");
     printf("floor = %s\n", cub->floor);
     printf("celling = %s\n", cub->celling);
+    // if (!check_rgb_str(cub) || !check_rgb_str_2(cub))
+    // {
+    //     printf("Error\nInvalid RGB values\n");
+    //     return (ft_free_all(cub), free(cub), 1);
+    // }
+    ft_check_colours_1(cub);
+    ft_check_colours_2(cub);
+    printf("\n=============================\n");
+    i = 0;
+    while (i < 3)
+    {
+        printf("%d\n", cub->F[i]);
+        i++;
+    }
+    i = 0;
+    while (i < 3)
+    {
+        printf("%d\n", cub->C[i]);
+        i++;
+    }
     ft_free_all(cub);
     free(cub);
     return (0);
