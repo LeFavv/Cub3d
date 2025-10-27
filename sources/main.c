@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:04:13 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 12:08:04 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 14:04:50 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ int main(int argc, char **argv)
         printf("%s", cub->map[i]);
         i++;
     }
+    directions_texture(cub->info_map, cub);
+    printf("\n=============================\n");
+    printf("NO = %s\n", cub->NO);
+    printf("SO = %s\n", cub->SO);
+    printf("WE = %s\n", cub->WE);
+    printf("EA = %s\n", cub->EA);
     ft_free_all(cub);
     free(cub);
     return (0);

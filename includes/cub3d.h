@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:41:17 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 12:09:49 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 14:14:47 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ typedef struct s_cub
     char    **info_map;
     int     line_info;
     int     line_total;
+    
+    char    *NO;
+    char    *SO;
+    char    *WE;
+    char    *EA;
 }t_cub;
 
 int		nb_line(char *file, t_cub *cub);
@@ -36,7 +41,12 @@ char	**load_file(char *file, t_cub *cub);
 char	**load_map(char **file, t_cub *cub);
 void    ft_free_all(t_cub *cub);
 void    ft_free_tab(char **tab);
-void    ft_free(char **file);
+void    ft_free(char *file);
 void    init_all(t_cub *cub);
+int	    ft_strncmp(const char *s1, const char *s2, size_t n);
+int		fill_direction(int index, char *file, t_cub *cub);
+void	fill_direction_2(t_cub *cub, int index, char *line);
+int		is_valid(char *file);
+int     directions_texture(char **file, t_cub *cub);
 
 #endif

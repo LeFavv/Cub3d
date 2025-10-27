@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:39:31 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 12:18:48 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 14:20:28 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,121 @@ int		nb_line(char *file, t_cub *cub);
 bool	check_name(char *file);
 int		nb_line_info(char **file, t_cub *cub);
 char	**load_info(char **file, t_cub *cub);
+int		fill_direction(int index, char *file, t_cub *cub);
+void	fill_direction_2(t_cub *cub, int index, char *line);
+int		is_valid(char *file);
+int		directions_texture(char **file, t_cub *cub);
 
+int		is_valid(char *file)
+{
+	if (ft_strncmp(file, "NO", 2) == 0)
+		return (1);
+	else if (ft_strncmp(file, "SO", 2) == 0)
+		return (2);
+	else if (ft_strncmp(file, "WE", 2) == 0)
+		return (3);
+	else if (ft_strncmp(file, "EA", 2) == 0)
+		return (4);
+	return (0);
+}
+
+void	fill_direction_2(t_cub *cub, int index, char *line)
+{
+	if (index == 1)
+		cub->NO = line;
+	else if (index  == 2)
+		cub->SO = line;
+	else if (index == 3)
+		cub->WE = line;
+	else if (index == 4)
+		cub->EA = line;
+		
+	// printf("\nfunc NO = %s\n", cub->NO);
+    // printf("func SO = %s\n", cub->SO);
+    // printf("func WE = %s\n", cub->WE);
+    // printf("func EA = %s\n", cub->EA);
+}
+
+// void	fill_direction_2(t_cub *cub, int index, char *line)
+// {
+// 	if (index == 1)
+// 	{
+// 		cub->NO = ft_strdup(line);
+// 		free(line);	
+// 	}
+// 	else if (index  == 2)
+// 	{
+// 		cub->SO = ft_strdup(line);
+// 		free(line);	
+// 	}
+// 	else if (index == 3)
+// 	{
+// 		cub->WE = ft_strdup(line);
+// 		free(line);	
+// 	}
+// 	else if (index == 4)
+// 	{
+// 		cub->EA = ft_strdup(line);
+// 		free(line);	
+// 	}
+// }
+
+int	fill_direction(int index,char *file, t_cub *cub)
+{
+	char	*line;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (file[i] != '.')
+		i++;
+	while (file[i + j])
+		j++;
+	line = malloc(sizeof(char) * (j + 1));
+	if (!line)
+		return (printf("Error\nMalloc failed\n"), 0);
+	j = 0;
+	while (file[i])
+	{
+		line[j] = file[i];
+		i++;
+		j++;
+	}
+	line[j] = '\0';
+	fill_direction_2(cub, index, line);
+	return (1);
+}
+
+int	directions_texture(char **file, t_cub *cub) //gerer en cas de return 0 pour stopper le programme
+{
+	int i;
+	int	j;
+	int	k;
+	int index;
+
+	j = 0;
+	k = 0;
+	i = 0;
+	while (cub->info_map[i])
+	{
+		if (is_valid(cub->info_map[i]))
+		{
+			index = is_valid(cub->info_map[i]);
+			// while (file[i][j] != '.')
+			// 	j++;
+			// while (file[i][j + k])
+			// 	k++;
+			if (!fill_direction(index, file[i], cub))
+			{
+				ft_free_all(cub);
+				return (0);
+			}
+		}
+		i++;
+	}
+	return (1);
+}
 
 char	**load_file(char *file, t_cub *cub)
 {
@@ -54,7 +168,6 @@ char	**load_info(char **file, t_cub *cub)
 {
 	int 	lines;
 	char	**info;
-	// char	*line;
 	int		i;
 
 	i = 0;

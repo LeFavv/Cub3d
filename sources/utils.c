@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 12:08:43 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 13:30:58 by vafavard         ###   ########.fr       */
+/*   Created: 2025/10/27 13:35:26 by vafavard          #+#    #+#             */
+/*   Updated: 2025/10/27 13:35:35 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void    init_all(t_cub *cub)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    cub->file = NULL;
-    cub->info_map = NULL;
-    cub->line_info = 0;
-    cub->line_total = 0;
-    cub->map = NULL;
-    cub->EA = NULL;
-    cub->NO = NULL;
-    cub->SO = NULL;
-    cub->WE = NULL;
+	size_t	i;
+
+	if (n == 0)
+		return (0);
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
