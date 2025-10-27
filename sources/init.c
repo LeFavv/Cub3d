@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 11:03:49 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 12:15:43 by vafavard         ###   ########.fr       */
+/*   Created: 2025/10/27 12:08:43 by vafavard          #+#    #+#             */
+/*   Updated: 2025/10/27 12:16:32 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void    ft_free_all(t_cub *cub)
+void    init_all(t_cub *cub)
 {
-    ft_free_tab(cub->file);
-    ft_free_tab(cub->info_map);
-    ft_free_tab(cub->map);
-
-    // ft_free(cub->info_map);
-    // ft_free(cub->map);
-}
-
-void    ft_free_tab(char **tab)
-{
-    int i = 0;
-    while (tab[i])
-    {
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
-}
-
-void    ft_free(char **file)
-{
-    free(file);
+    cub->file = NULL;
+    cub->info_map = NULL;
+    cub->line_info = 0;
+    cub->line_total = 0;
+    cub->map = NULL;
 }

@@ -6,18 +6,22 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:39:31 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 11:10:34 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/27 12:18:48 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/get_next_line.h"
 
-char	**load_map(char *file);
-int		nb_line(char *file);
+char	**load_file(char *file, t_cub *cub);
+char	**load_map(char **file, t_cub *cub);
+int		nb_line(char *file, t_cub *cub);
 bool	check_name(char *file);
+int		nb_line_info(char **file, t_cub *cub);
+char	**load_info(char **file, t_cub *cub);
 
-char	**load_map(char *file)
+
+char	**load_file(char *file, t_cub *cub)
 {
 	int		fd;
 	int		lines;
@@ -26,7 +30,7 @@ char	**load_map(char *file)
 	char	*line;
 
 	i = 0;
-	lines = nb_line(file);
+	lines = nb_line(file, cub);
 	if (lines <= 0)
 		return (NULL);
 	map = malloc(sizeof(char *) * (lines + 1));
@@ -46,7 +50,68 @@ char	**load_map(char *file)
 	return (close(fd), map);
 }
 
-int	nb_line(char *file)
+char	**load_info(char **file, t_cub *cub)
+{
+	int 	lines;
+	char	**info;
+	// char	*line;
+	int		i;
+
+	i = 0;
+	lines = nb_line_info(file, cub);
+	info = malloc(sizeof(char *) * (lines + 1));
+	if (!info)
+		return (printf("Error\nMalloc failed\n"), NULL);
+	while (i < lines)
+	{
+		info[i] = ft_strdup(file[i]);
+		// info[i] = file[i];
+		i++;
+	}
+	info[i] = NULL;
+	return (info);
+}
+
+char	**load_map(char **file, t_cub *cub)
+{
+	char	**map;
+	int		i;
+	
+	i = 0;
+	map = malloc(sizeof(char *) * (cub->line_total - cub->line_info + 1));
+	if (!map)
+		return (printf("Error\nMalloc failed\n"), NULL);
+	while (file[cub->line_info + i])
+	{
+		map[i] = ft_strdup(file[cub->line_info + i]);
+		// map[i] = file[cub->line_info + i];
+		i++;
+	}
+	map[i] = NULL;
+	return (map);
+}
+
+int	nb_line_info(char **file, t_cub *cub)
+{
+	int count;
+	int i ;
+	int	j;
+
+	i = 0;
+	count  = 0;
+	while (file[i])
+	{
+		j = 0;
+		while (file[i][j] == '\n' || file[i][j] == ' ')
+			j++;
+		if (file[i][j] == '1')
+			return (cub->line_info = i, i);
+		i += 1;
+	}
+	return (i);
+}
+
+int	nb_line(char *file, t_cub *cub)
 {
 	int		fd;
 	int		count;
@@ -64,6 +129,7 @@ int	nb_line(char *file)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	cub->line_total = count;
 	return (count);
 }
 
