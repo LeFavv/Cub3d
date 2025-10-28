@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:39:31 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/28 12:16:45 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/28 13:39:02 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ bool		check_rgb_str(t_cub *cub) //possible de faire un truc universel en prenant
 	// printf("|%s|\n", cub->floor);
 	if (!cub->floor || !cub->celling)
 		return (false);
-	while (i < ft_strlen(cub->floor) - 1)
+	while (i < (int)ft_strlen(cub->floor) - 1)
 	{
 		if (!(cub->floor[i] >= '0' && cub->floor[i] <= '9'))
 		{
@@ -106,7 +106,7 @@ bool		check_rgb_str(t_cub *cub) //possible de faire un truc universel en prenant
 		return (false);
 	count = 0;
 	i = 0;
-	while (i < ft_strlen(cub->celling) - 1)
+	while (i < (int)ft_strlen(cub->celling) - 1)
 	{
 		if (!(cub->celling[i] >= '0' && cub->celling[i] <= '9'))
 		{
@@ -368,12 +368,10 @@ char	**load_map(char **file, t_cub *cub)
 
 int	nb_line_info(char **file, t_cub *cub)
 {
-	int count;
 	int i ;
 	int	j;
 
 	i = 0;
-	count  = 0;
 	while (file[i])
 	{
 		j = 0;
@@ -415,17 +413,23 @@ bool	check_name(char *file)
 
 	valide = 0;
 	i = 0;
-	while (file[i] != '.')
+	while (file[i] && file[i] != '.')
 		i++;
 	i++;
 	if (file[i] == 'c')
 		valide += 1;
+	// else
+	// 	printf("1 %c\n", file[i]);
 	if (file[i + 1] == 'u')
 		valide += 1;
+	// else
+	// 	printf("2 %c\n", file[i + 1]);
 	if (file[i + 2] == 'b')
 		valide += 1;
+	// else
+	// 	printf("3 %c\n", file[i + 2]);
 	if (valide == 3)
 		return (true);
 	else
-		return (false);
+		return (/*printf("%d\n", valide), */false);
 }
