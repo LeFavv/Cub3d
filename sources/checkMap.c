@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:39:31 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 16:55:11 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:16:45 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,44 +25,106 @@ int		is_valid(char *file);
 int		directions_texture(char **file, t_cub *cub);
 int		fill_floor_celling(int index, char *file, t_cub *cub);
 void	fill_floor_celling_2(t_cub *cub, int index, char *line);
-int		check_rgb_str(t_cub *cub);
+bool	check_rgb_str(t_cub *cub);
 int		check_rgb_str_2(t_cub *cub);
 int		ft_atoi(char *str);
 void	ft_check_colours_1(t_cub *cub);
+bool	check_numbers(int *tab);
+bool	check_map(t_cub *cub);
 
-int		check_rgb_str(t_cub *cub)
+bool	check_map(t_cub *cub)
+{
+	int i;
+	int	j;
+	int	flag;
+	
+	i = 0;
+	flag = 0;
+	while (cub->map[i])
+	{
+		j = 0;
+		flag = 0;
+		while (cub->map[i][j])
+		{
+			if (cub->map[i][j] != ' ' && cub->map[i][j] != '\n')
+				flag = 1;
+			j++;
+		}
+		if (!flag)
+			return (printf("1\n"),false);
+		i++;
+	}
+	i -= 1;
+	j = 0;
+	while (cub->map[i][j])
+	{
+		if (cub->map[i][j] != '1')
+		{
+			if (cub->map[i][j] != ' ')
+				return (printf("2\n"),false);
+		}
+		j++;
+	}
+	return (true);
+}
+
+bool	check_numbers(int *tab)
+{
+	int i;
+
+	i = 0;
+	while (i < 3)
+	{
+		// printf("valeur de tab[i] = %d\n", tab[i]);
+		if (tab[i] < 0 || tab[i] > 255)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+
+bool		check_rgb_str(t_cub *cub) //possible de faire un truc universel en prenant en parametre une string et pas cub
 {
 	int i = 0;
 	int count = 0;
-	
-	while (cub->floor[i])
+	// printf("|%s|\n", cub->floor);
+	if (!cub->floor || !cub->celling)
+		return (false);
+	while (i < ft_strlen(cub->floor) - 1)
 	{
-		if (!(cub->floor[i] >= '0' && cub->floor[i] <= '9') 
-			|| cub->floor[i] != ',')
-			return (0);
-		else if (cub->floor[i] == ',')
-			count++;
+		if (!(cub->floor[i] >= '0' && cub->floor[i] <= '9'))
+		{
+			if (cub->floor[i] == ',')
+				count++;
+			else
+				return (false);
+		}
 		i++;
 	}
 	if (count != 2)
-		return (0);
+		return (false);
 	count = 0;
-	while (cub->celling[i])
+	i = 0;
+	while (i < ft_strlen(cub->celling) - 1)
 	{
-		if (!(cub->celling[i] >= '0' && cub->celling[i] <= '9') 
-			|| cub->celling[i] != ',')
-			return (0);
-		if (cub->celling[i] == ',')
-			count++;
+		if (!(cub->celling[i] >= '0' && cub->celling[i] <= '9'))
+		{
+			if (cub->celling[i] == ',')
+				count++;
+			else
+				return (false);
+		}
 		i++;
 	}
 	if (count != 2)
-		return (0);
-	return (1);
+		return (false);
+	return (true);
 }
 
 int	check_rgb_str_2(t_cub *cub)
 {
+	// printf("je rentre la\n");
 	if (ft_strlen(cub->celling) < 5 || ft_strlen(cub->celling) > 11)
 		return (0);
 	if (ft_strlen(cub->floor) < 5 || ft_strlen(cub->floor) > 11)
@@ -84,20 +146,6 @@ int	ft_atoi(char *str)
 	}
 	return (nb);
 }
-
-// void	ft_check_colours(t_cub *cub)
-// {
-// 	int i = 0;
-// 	int j = 0;
-// 	while (cub->floor[i] && j < 3)
-// 	{
-// 		while (cub->floor[i] && cub->floor[i] != ',')
-// 			i++;
-// 		cub->F[j] = ft_atoi(&cub->floor[i]);
-// 		i++;
-// 		j++;
-// 	}
-// }
 
 void	ft_check_colours_1(t_cub *cub)
 {
