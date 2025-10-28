@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:04:13 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/28 12:39:45 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/28 15:23:27 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int main(int argc, char **argv)
     if (!cub->map)
         return (ft_free_all(cub), free(cub), 1);
     if (!check_map(cub))
+        return (printf("File .cub non correct\n"), ft_free_all(cub), free(cub), 1);
+    if (!check_map_spaces(cub) || !check_sides(cub) || !check_zero_leak(cub))
         return (printf("File .cub non correct\n"), ft_free_all(cub), free(cub), 1);
     while (cub->file[i])
     {

@@ -1,13 +1,9 @@
 To Do list pour le parsing:
 
-- Verifier qu'on est bien qu'un seul argument
-- Verifier que l'argument est valide
-- Recuperer le fichier .cub
-- Verifier qu'il soit bien en .cub
-- Verifier que la map soit bien en dernier dans le fichier
 - Verifier que les infos pour les textures de directions
-- Verifier que les couleurs soient valides (3 nombres entre 0 et 255)
 - Floofill pour la map 
 - la map doit etre entoure de mur
 - Verifier que dans la map il n'y ait bien que des 0, 1 et une seule position de depart du joueur (N, S, E ou W)
 
+les sides c'est ok
+check le top et le bot

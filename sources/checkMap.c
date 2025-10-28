@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:39:31 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/28 13:39:02 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/28 15:24:48 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,93 @@ int		ft_atoi(char *str);
 void	ft_check_colours_1(t_cub *cub);
 bool	check_numbers(int *tab);
 bool	check_map(t_cub *cub);
+bool	check_map_spaces(t_cub *cub);
+bool	check_sides(t_cub *cub);
+bool	check_zero_leak(t_cub *cub);
+
+
+bool	check_zero_leak(t_cub *cub)
+{
+	int i;
+	int	j;
+	
+	i = 0;
+	while (cub->map[i])
+	{
+		j = 0;
+		while (cub->map[i][j])
+		{
+			if (cub->map[i][j] == '0')
+			{
+				if (!cub->map[i + 1][j] || !cub->map[i - 1][j])
+					return (printf("1\n"), false);
+				else if (cub->map[i + 1][j] == ' ' || cub->map[i - 1][j] == ' ')
+					return (printf("2\n"), false);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (true);
+}
+
+bool	check_sides(t_cub *cub)
+{
+	int i;
+	int j;
+	
+	i = 0;
+	while (cub->map[i])
+	{
+		j = 0;
+		while (cub->map[i][j])
+		{
+			if (cub->map[i][0] != ' ')
+			{
+				if (cub->map[i][0] != '1')
+					return (printf("1 %s\n", cub->map[i]), false);
+			}
+			if (cub->map[i][j + 1] == '\n')
+			{
+				if (cub->map[i][j] != '1' && cub->map[i][j] != ' ')
+					return (printf("2\n"), false);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (true);
+}
+
+bool	check_map_spaces(t_cub *cub)
+{
+	int i;
+	int j;
+	int flag;
+	
+	i = 0;
+	while (cub->map[i])
+	{
+		j = 0;
+		while (cub->map[i][j])
+		{
+			flag = 0;
+			if (cub->map[i][j] == ' ')
+			{
+				flag = 1;
+				if (cub->map[i][j - 1] && cub->map[i][j - 1] != '1')
+					return false;
+				while (cub->map[i][j] && cub->map[i][j] == ' ')
+					j++;
+			}
+			if (flag == 1 && cub->map[i][j] != '1')
+				return (false);
+			j++;
+		}
+		i++;
+	}
+	return (true);
+}
 
 bool	check_map(t_cub *cub)
 {
@@ -426,6 +513,8 @@ bool	check_name(char *file)
 	// 	printf("2 %c\n", file[i + 1]);
 	if (file[i + 2] == 'b')
 		valide += 1;
+	if (file[i + 3] != '\0')
+		return (false);
 	// else
 	// 	printf("3 %c\n", file[i + 2]);
 	if (valide == 3)
