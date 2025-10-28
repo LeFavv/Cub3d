@@ -5,5 +5,3 @@ To Do list pour le parsing:
 - la map doit etre entoure de mur
 - Verifier que dans la map il n'y ait bien que des 0, 1 et une seule position de depart du joueur (N, S, E ou W)
 
-les sides c'est ok
-check le top et le bot
