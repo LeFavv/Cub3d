@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:41:17 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/28 15:23:07 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/29 15:08:41 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,16 @@ bool	check_map(t_cub *cub);
 bool	check_map_spaces(t_cub *cub);
 bool	check_sides(t_cub *cub);
 bool	check_zero_leak(t_cub *cub); //nom a chier c'est pour check les 0 dans la map
+// void	check_valid_space(t_cub *cub); //test
+void	check_valid_space(t_cub **cub, int f);
+bool	valid_char(char c); //test 2
+bool	check_map_char(t_cub *cub);
 
 int		ft_count_word(char const *s, char c);
 char	*ft_malloc(char const *s, int start, int end);
 char	**ft_split(char const *s, char c);
 void	ft_free_all_split(char **tab, int last);
-int		extern_loop(const char *s, int i, char c, int flag);
+int	
+	extern_loop(const char *s, int i, char c, int flag);
 
 #endif

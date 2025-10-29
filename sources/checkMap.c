@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:39:31 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/28 15:24:48 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/29 15:15:26 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,219 @@ bool	check_map(t_cub *cub);
 bool	check_map_spaces(t_cub *cub);
 bool	check_sides(t_cub *cub);
 bool	check_zero_leak(t_cub *cub);
+void	check_valid_space(t_cub **cub, int f);
+bool	valid_char(char c);
+bool	check_map_char(t_cub *cub);
+bool	floor_celling(char c);
+bool	player_char(char c);
 
+bool	floor_celling(char c)
+{
+	if (c == '1' || c == '0')
+		return (true);
+	else if ((c >= 9 && c <= 23) || c == 32)
+		return (true);
+	return (printf("\n%c\n", c), false);
+}
+
+bool	player_char(char c)
+{
+	if (c == 'E' || c == 'W' || c == 'S' || c == 'N')
+		return (true);
+	return (printf("\n2\n"), false);
+}
+
+
+bool	check_map_char(t_cub *cub)
+{
+	int i;
+	int j;
+	int	count_player;
+
+	i = 0;
+	count_player = 0;
+	while (cub->map[i])
+	{
+		j = 0;
+		while (cub->map[i][j])
+		{
+			if (floor_celling(cub->map[i][j]))
+				j++;
+			else if (player_char(cub->map[i][j]))
+			{
+				count_player++;
+				j++;
+			}
+			else
+				return (false);
+			if (count_player > 1)
+				return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
+bool	valid_char(char c)
+{
+	if (c == '0')
+		return (true);
+	return (false);
+}
+
+int	double_tab_lenght(char **tab)
+{
+	int i = 0;
+	while (tab[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
+// void	check_valid_space(t_cub *cub)
+// {
+// 	int i;
+// 	int j;
+	
+// 	i = 1;
+// 	while (/*cub->map[i]*/i < (double_tab_lenght(cub->map) - 1))
+// 	{
+// 		j = 1;
+// 		while (/*cub->map[i][j]*/j < ((int)ft_strlen(cub->map[i]) - 1))
+// 		{
+// 			if (cub->map[i][j] == ' ')
+// 			{
+// 				if (valid_char(cub->map[i][j + 1]) || valid_char(cub->map[i][j - 1])
+// 					 || valid_char(cub->map[i + 1][j]) || valid_char(cub->map[i - 1][j]))
+// 					cub->map[i][j] = '0';
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+void	check_valid_space(t_cub **cub, int f)
+{
+	int i;
+	int j;
+	int k;
+	// int	l;
+	
+	i = 1;
+	while (/*cub->map[i]*/i < (double_tab_lenght((*cub)->map) - 1))
+	{
+		j = 1;
+		while (/*cub->map[i][j]*/j < ((int)ft_strlen((*cub)->map[i]) - 1))
+		{
+			k = 0;
+			if ((*cub)->map[i][j] == ' ')
+			{
+				if ((*cub)->map[i][j] == ' ')
+				{
+				    int valid = 0;
+				    if (j + 1 < (int)ft_strlen((*cub)->map[i]) && valid_char((*cub)->map[i][j + 1]))
+				        valid = 1;
+				    if (valid_char((*cub)->map[i][j - 1]))
+				        valid = 1;
+				    if (j < (int)ft_strlen((*cub)->map[i + 1]) && valid_char((*cub)->map[i + 1][j]))
+				        valid = 1;
+				    if (j < (int)ft_strlen((*cub)->map[i - 1]) && valid_char((*cub)->map[i - 1][j]))
+				        valid = 1;
+				    if (valid)
+				        (*cub)->map[i][j] = '0';
+					else if ((*cub)->map[i][j - 1] == '1')
+					{
+						while ((*cub)->map[i][j + k] && (*cub)->map[i][j + k] != '1')
+						{
+							if ((*cub)->map[i][j + k] == '0')
+							{
+								while (j < k)
+								{
+									if ((*cub)->map[i][j] != '1')
+										(*cub)->map[i][j] = '0';
+									j++;
+								}
+							}
+							k++;
+						}
+						
+					}
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	if (f == 1)
+		return;
+	check_valid_space(cub, 1);
+}
+
+// void	check_valid_space(t_cub **cub)
+// {
+// 	int i;
+// 	int j;
+// 	int k;
+	
+// 	i = 1;
+// 	while (/*cub->map[i]*/i < (double_tab_lenght((*cub)->map) - 1))
+// 	{
+// 		j = 1;
+// 		while (/*cub->map[i][j]*/j < ((int)ft_strlen((*cub)->map[i]) - 1))
+// 		{
+// 			if ((*cub)->map[i][j] == ' ')
+// 			{
+// 				// if (valid_char((*cub)->map[i][j + 1]) || valid_char((*cub)->map[i][j - 1])
+// 				// 	 || valid_char((*cub)->map[i + 1][j]) || valid_char((*cub)->map[i - 1][j]))
+// 				// {
+// 				// 	(*cub)->map[i][j] = '0';
+// 				// 	// printf("suis je la\n");
+// 				// }
+// 				if ((*cub)->map[i][j] == ' ')
+// 				{
+// 				    int valid = 0;
+// 					k = 0;
+// 				    if (j + 1 < (int)ft_strlen((*cub)->map[i]) && valid_char((*cub)->map[i][j + 1]))
+// 					{
+// 						if (((*cub)->map[i][j - 1] && valid_char((*cub)->map[i][j - 1])))
+// 						{
+// 							while ((*cub)->map[i][j + k])
+// 							{
+// 								if ((*cub)->map[i][j + k] == '0')
+// 									valid = 1;
+// 								k++;
+// 							}
+// 						}
+// 						k = 0;
+// 					}
+// 				    if (valid_char((*cub)->map[i][j - 1]))
+// 					{
+// 						if (((*cub)->map[i][j - 1] && valid_char((*cub)->map[i][j - 1])))
+// 						{
+// 							while ((*cub)->map[i][j + k])
+// 							{
+// 								if ((*cub)->map[i][j + k] == '0')
+// 									valid = 1;
+// 								k--;
+// 							}
+// 						}
+// 						k = 0;
+// 					}
+// 				        valid = 1;
+// 				    if (j < (int)ft_strlen((*cub)->map[i + 1]) && valid_char((*cub)->map[i + 1][j]))
+// 				        valid = 1;
+// 				    if (j < (int)ft_strlen((*cub)->map[i - 1]) && valid_char((*cub)->map[i - 1][j]))
+// 				        valid = 1;
+// 				    if (valid)
+// 				        (*cub)->map[i][j] = '0';
+// 				}
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 bool	check_zero_leak(t_cub *cub)
 {
@@ -50,9 +262,9 @@ bool	check_zero_leak(t_cub *cub)
 			if (cub->map[i][j] == '0')
 			{
 				if (!cub->map[i + 1][j] || !cub->map[i - 1][j])
-					return (printf("1\n"), false);
+					return (printf("A\n"), false);
 				else if (cub->map[i + 1][j] == ' ' || cub->map[i - 1][j] == ' ')
-					return (printf("2\n"), false);
+					return (printf("B %s [%d][%d]\n", cub->map[i],i, j), false);
 			}
 			j++;
 		}
@@ -95,23 +307,23 @@ bool	check_map_spaces(t_cub *cub)
 	int j;
 	int flag;
 	
-	i = 0;
+	i = 1;
 	while (cub->map[i])
 	{
-		j = 0;
+		j = 1;
 		while (cub->map[i][j])
 		{
 			flag = 0;
 			if (cub->map[i][j] == ' ')
 			{
 				flag = 1;
-				if (cub->map[i][j - 1] && cub->map[i][j - 1] != '1')
-					return false;
+				// if (cub->map[i][j - 1] && cub->map[i][j - 1] != '1')
+				// 	return (printf("C\n"), false);
 				while (cub->map[i][j] && cub->map[i][j] == ' ')
 					j++;
 			}
-			if (flag == 1 && cub->map[i][j] != '1')
-				return (false);
+			if (flag == 1 && (cub->map[i][j] != '1' && cub->map[i][j + 1]))
+				return (/*printf("D %s [%d]\n", cub->map[i], i), */false);
 			j++;
 		}
 		i++;
@@ -138,7 +350,7 @@ bool	check_map(t_cub *cub)
 			j++;
 		}
 		if (!flag)
-			return (printf("1\n"),false);
+			return (printf("\nla\n"),false);
 		i++;
 	}
 	i -= 1;
@@ -148,7 +360,7 @@ bool	check_map(t_cub *cub)
 		if (cub->map[i][j] != '1')
 		{
 			if (cub->map[i][j] != ' ')
-				return (printf("2\n"),false);
+				return (printf("2%s\n", cub->map[i]),false);
 		}
 		j++;
 	}
@@ -184,8 +396,8 @@ bool		check_rgb_str(t_cub *cub) //possible de faire un truc universel en prenant
 		{
 			if (cub->floor[i] == ',')
 				count++;
-			else
-				return (false);
+			else if (!((cub->floor[i] >= 9 && cub->floor[i] <= 13) || cub->floor[i] == 32))
+				return (printf("1\n"), false);
 		}
 		i++;
 	}
@@ -199,8 +411,8 @@ bool		check_rgb_str(t_cub *cub) //possible de faire un truc universel en prenant
 		{
 			if (cub->celling[i] == ',')
 				count++;
-			else
-				return (false);
+			else if (!((cub->celling[i] >= 9 && cub->celling[i] <= 13) || cub->celling[i] == 32))
+				return (printf("1\n"), false);
 		}
 		i++;
 	}
@@ -226,6 +438,8 @@ int	ft_atoi(char *str)
 	
 	nb = 0;
 	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nb = nb * 10 + (str[i] - '0');
@@ -301,19 +515,52 @@ void	fill_floor_celling_2(t_cub *cub, int index, char *line)
 		cub->celling = line;
 }
 
+char	*skip_space(char *str)
+{
+	int i;
+
+	i = 0;
+
+	while (str[i])
+	{
+		if ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+			i++;
+		else
+			return (&str[i]);
+	}
+	return (&str[i]);
+}
+
+// int		is_valid(char *file)
+// {
+// 	if (ft_strncmp(file, "NO", 2) == 0)
+// 		return (1);
+// 	else if (ft_strncmp(file, "SO", 2) == 0)
+// 		return (2);
+// 	else if (ft_strncmp(file, "WE", 2) == 0)
+// 		return (3);
+// 	else if (ft_strncmp(file, "EA", 2) == 0)
+// 		return (4);
+// 	else if (ft_strncmp(file, "F", 1) == 0)
+// 		return (5);
+// 	else if (ft_strncmp(file, "C", 1) == 0)
+// 		return (6);
+// 	return (0);
+// }
+
 int		is_valid(char *file)
 {
-	if (ft_strncmp(file, "NO", 2) == 0)
+	if (ft_strncmp(skip_space(file), "NO", 2) == 0)
 		return (1);
-	else if (ft_strncmp(file, "SO", 2) == 0)
+	else if (ft_strncmp(skip_space(file), "SO", 2) == 0)
 		return (2);
-	else if (ft_strncmp(file, "WE", 2) == 0)
+	else if (ft_strncmp(skip_space(file), "WE", 2) == 0)
 		return (3);
-	else if (ft_strncmp(file, "EA", 2) == 0)
+	else if (ft_strncmp(skip_space(file), "EA", 2) == 0)
 		return (4);
-	else if (ft_strncmp(file, "F", 1) == 0)
+	else if (ft_strncmp(skip_space(file), "F", 1) == 0)
 		return (5);
-	else if (ft_strncmp(file, "C", 1) == 0)
+	else if (ft_strncmp(skip_space(file), "C", 1) == 0)
 		return (6);
 	return (0);
 }

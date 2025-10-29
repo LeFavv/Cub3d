@@ -1,9 +1,0 @@
-To Do list pour le parsing:
-
-- Verifier que les infos pour les textures de directions
-- Floofill pour la map 
-- la map doit etre entoure de mur
-- Verifier que dans la map il n'y ait bien que des 0, 1 et une seule position de depart du joueur (N, S, E ou W)
-
-checksi c'est un valid char
-    si c'est pas un valid char check si c'est le char du joueur ==> flag = 1 pour si on tombe sur un autre

@@ -6,13 +6,13 @@
 #    By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/28 13:34:02 by vafavard          #+#    #+#              #
-#    Updated: 2025/10/28 13:37:51 by vafavard         ###   ########.fr        #
+#    Updated: 2025/10/29 10:35:31 by vafavard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3d
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 SRC_PATH = sources/
 
 SRC_FILES = checkMap.c free.c ft_util_2.c get_next_line_utils.c get_next_line.c init.c \
