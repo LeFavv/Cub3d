@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:41:17 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/29 15:08:41 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 12:57:48 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ bool	check_zero_leak(t_cub *cub); //nom a chier c'est pour check les 0 dans la m
 void	check_valid_space(t_cub **cub, int f);
 bool	valid_char(char c); //test 2
 bool	check_map_char(t_cub *cub);
+bool	load_and_check(t_cub *cub);
 
 int		ft_count_word(char const *s, char c);
 char	*ft_malloc(char const *s, int start, int end);

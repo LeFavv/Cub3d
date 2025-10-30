@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:39:31 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/29 15:15:26 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 13:42:08 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,42 @@ bool	valid_char(char c);
 bool	check_map_char(t_cub *cub);
 bool	floor_celling(char c);
 bool	player_char(char c);
+bool	load_and_check(t_cub *cub);
+bool	check_general(t_cub *cub);
+
+bool	load_and_check(t_cub *cub)
+{
+	cub->info_map = load_info(cub->file, cub);
+    if (!cub->info_map)
+        return (false);
+    cub->map = load_map(cub->file, cub);
+	if (!cub->map)
+    	return (false);
+		
+	if (!check_general(cub))
+		return (false);
+	return (true);
+}
+
+bool	check_general(t_cub *cub)
+{
+	if (!check_map(cub))
+        return (printf("File .cub non correct1\n"), false);
+	check_valid_space(&cub, 0);
+	if (!check_map_spaces(cub) || !check_sides(cub) || !check_zero_leak(cub))
+        return (printf("File .cub non correct3\n"), false);
+	if (!check_map_char(cub))
+        return (printf("Invalides char in map\n"), false);
+	if (!directions_texture(cub->info_map, cub))
+		return (printf("Texture directions invalid\n"), false);
+	if (!check_rgb_str(cub))
+		return (printf("Error\nInvalid RGB values\n"), false);
+	ft_check_colours_1(cub);
+    ft_check_colours_2(cub);
+	if (!check_numbers(cub->F) || !check_numbers(cub->C))
+		return (printf("Error\nInvalid RGB values\n"), false);
+	return (true);
+}
 
 bool	floor_celling(char c)
 {
@@ -46,16 +82,17 @@ bool	floor_celling(char c)
 		return (true);
 	else if ((c >= 9 && c <= 23) || c == 32)
 		return (true);
-	return (printf("\n%c\n", c), false);
+	else
+		return (printf("\n%c\n", c), false);
 }
 
 bool	player_char(char c)
 {
+	// printf("je rentre la\n");
 	if (c == 'E' || c == 'W' || c == 'S' || c == 'N')
 		return (true);
 	return (printf("\n2\n"), false);
 }
-
 
 bool	check_map_char(t_cub *cub)
 {
@@ -70,20 +107,21 @@ bool	check_map_char(t_cub *cub)
 		j = 0;
 		while (cub->map[i][j])
 		{
-			if (floor_celling(cub->map[i][j]))
-				j++;
-			else if (player_char(cub->map[i][j]))
+			if (!floor_celling(cub->map[i][j]))
 			{
-				count_player++;
-				j++;
+				if (player_char(cub->map[i][j]))
+				{
+					count_player++;
+				}
+				else
+					return (false);
 			}
-			else
-				return (false);
-			if (count_player > 1)
-				return (false);
+			j++;
 		}
 		i++;
 	}
+	if (count_player != 1)
+				return (false);
 	return (true);
 }
 

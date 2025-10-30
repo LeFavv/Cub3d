@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:04:13 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/29 15:08:25 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 12:59:25 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,34 @@ int main(int argc, char **argv)
     if (!cub->file)
         return (ft_free_all(cub), free(cub), 1);
     cub->info_map = load_info(cub->file, cub);
-    if (!cub->info_map)
+    if (!load_and_check(cub))
         return (ft_free_all(cub), free(cub), 1);
-    cub->map = load_map(cub->file, cub);
-    if (!cub->map)
-        return (ft_free_all(cub), free(cub), 1);
-    if (!check_map(cub))
-        return (printf("File .cub non correct1\n"), ft_free_all(cub), free(cub), 1);
+    //appeller fonction de check globale
+
+    // if (!cub->info_map)
+    //     return (ft_free_all(cub), free(cub), 1);
+    // cub->map = load_map(cub->file, cub);
+    // if (!cub->map)
+    //     return (ft_free_all(cub), free(cub), 1);
+    // if (!check_map(cub))
+    //     return (printf("File .cub non correct1\n"), ft_free_all(cub), free(cub), 1);
      while (cub->map[i]) // impression map verif de la fonction du dessus
     {
         printf("%s", cub->map[i]);
         i++;
     }
     printf("\n=============================\n");
-    check_valid_space(&cub, 0);
+    // check_valid_space(&cub, 0);
     i = 0;
        while (cub->map[i]) // impression map verif de la fonction du dessus
     {
         printf("%s", cub->map[i]);
         i++;
     }
-    if (!check_map_spaces(cub) || !check_sides(cub) || !check_zero_leak(cub))
-        return (printf("File .cub non correct3\n"), ft_free_all(cub), free(cub), 1);
-    if (!check_map_char(cub))
-        return (printf("Invalides char in map\n"), ft_free_all(cub), free(cub), 1);
+    // if (!check_map_spaces(cub) || !check_sides(cub) || !check_zero_leak(cub))
+    //     return (printf("File .cub non correct3\n"), ft_free_all(cub), free(cub), 1);
+    // if (!check_map_char(cub))
+    //     return (printf("Invalides char in map\n"), ft_free_all(cub), free(cub), 1);
     while (cub->file[i])
     {
         printf("%s", cub->file[i]);
@@ -76,11 +80,11 @@ int main(int argc, char **argv)
         printf("%s", cub->map[i]);
         i++;
     }
-    if (!directions_texture(cub->info_map, cub))
-    {
-        ft_free_all(cub);
-        exit (0);
-    }
+    // if (!directions_texture(cub->info_map, cub))
+    // {
+    //     ft_free_all(cub);
+    //     exit (0);
+    // }
     printf("\n=============================\n");
     printf("NO = %s\n", cub->NO);
     printf("SO = %s\n", cub->SO);
@@ -90,18 +94,18 @@ int main(int argc, char **argv)
     printf("\n=============================\n");
     printf("floor = %s\n", cub->floor);
     printf("celling = %s\n", cub->celling);
-    if (!check_rgb_str(cub)/* || !check_rgb_str_2(cub)*/)
-    {
-        printf("Error\nInvalid RGB values\n");
-        return (ft_free_all(cub), free(cub), 1);
-    }
-    ft_check_colours_1(cub);
-    ft_check_colours_2(cub);
-    if (!check_numbers(cub->F) || !check_numbers(cub->C))
-    {
-        printf("Error\nInvalid RGB values\n");
-        return (ft_free_all(cub), free(cub), 1);
-    }
+    // if (!check_rgb_str(cub)/* || !check_rgb_str_2(cub)*/)
+    // {
+    //     printf("Error\nInvalid RGB values\n");
+    //     return (ft_free_all(cub), free(cub), 1);
+    // }
+    // ft_check_colours_1(cub);
+    // ft_check_colours_2(cub);
+    // if (!check_numbers(cub->F) || !check_numbers(cub->C))
+    // {
+    //     printf("Error\nInvalid RGB values\n");
+    //     return (ft_free_all(cub), free(cub), 1);
+    // }
     printf("\n=============================\n");
     i = 0;
     while (i < 3)
