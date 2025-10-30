@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:41:17 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 12:57:48 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 14:59:32 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,3 +80,6 @@ int
 	extern_loop(const char *s, int i, char c, int flag);
 
 #endif
+
+
+

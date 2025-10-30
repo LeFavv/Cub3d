@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:04:13 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 12:59:25 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 13:55:27 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
     cub->file = load_file(argv[1], cub);
     if (!cub->file)
         return (ft_free_all(cub), free(cub), 1);
-    cub->info_map = load_info(cub->file, cub);
+    // cub->info_map = load_info(cub->file, cub);
     if (!load_and_check(cub))
         return (ft_free_all(cub), free(cub), 1);
     //appeller fonction de check globale

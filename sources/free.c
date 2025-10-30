@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:03:49 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 15:00:55 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 13:56:56 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ void    ft_free_all(t_cub *cub)
     {
         ft_free_int_tab(cub->F);
     }
-    // ft_free(cub->info_map);
-    // ft_free(cub->map);
 }
 
 void    ft_free_int_tab(int *tab)
