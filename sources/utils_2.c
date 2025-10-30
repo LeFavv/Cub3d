@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_util_2.c                                        :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:51:17 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/27 16:53:03 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:41:56 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/get_next_line.h"
 
 int		ft_count_word(char const *s, char c);
 char	*ft_malloc(char const *s, int start, int end);

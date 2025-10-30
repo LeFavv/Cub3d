@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:41:17 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 14:59:32 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:57:34 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,46 +38,67 @@ typedef struct s_cub
 	
 }t_cub;
 
-int		nb_line(char *file, t_cub *cub);
-bool	check_name(char *file);
-char	**load_info(char **file, t_cub *cub);
+//parsing_map
+bool	load_and_check(t_cub *cub);
+bool	check_general(t_cub *cub);
+
+//parsing_map_char
+bool	floor_celling(char c); 
+bool	player_char(char c);
+bool	check_map_char(t_cub *cub);
+bool	valid_char(char c);
+
+//utils
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		double_tab_lenght(char **tab);
+int		ft_atoi(char *str);
 int		nb_line_info(char **file, t_cub *cub);
-char	**load_file(char *file, t_cub *cub);
-char	**load_map(char **file, t_cub *cub);
-void    ft_free_all(t_cub *cub);
-void    ft_free_tab(char **tab);
-void    ft_free(char *file);
-int     init_all(t_cub *cub);
-int	    ft_strncmp(const char *s1, const char *s2, size_t n);
-int		fill_direction(int index, char *file, t_cub *cub);
-void	fill_direction_2(t_cub *cub, int index, char *line);
-int		is_valid(char *file);
-int     directions_texture(char **file, t_cub *cub);
-void    ft_free_int_tab(int *tab);
-int		fill_floor_celling(int index, char *file, t_cub *cub);
-void	fill_floor_celling_2(t_cub *cub, int index, char *line);
+int		nb_line(char *file, t_cub *cub);
+
+//check_valid_map
+void	check_valid_space(t_cub **cub, int f);
+bool	check_zero_leak(t_cub *cub);
+bool	check_sides(t_cub *cub);
+bool	check_map_spaces(t_cub *cub);
+bool	check_map(t_cub *cub);
+
+//parsing_colours
+bool	check_numbers(int *tab);
 bool	check_rgb_str(t_cub *cub);
 int		check_rgb_str_2(t_cub *cub);
-int		ft_atoi(char *str);
 void	ft_check_colours_1(t_cub *cub);
 void	ft_check_colours_2(t_cub *cub);
-bool	check_numbers(int *tab);
-bool	check_map(t_cub *cub);
-bool	check_map_spaces(t_cub *cub);
-bool	check_sides(t_cub *cub);
-bool	check_zero_leak(t_cub *cub); //nom a chier c'est pour check les 0 dans la map
-// void	check_valid_space(t_cub *cub); //test
-void	check_valid_space(t_cub **cub, int f);
-bool	valid_char(char c); //test 2
-bool	check_map_char(t_cub *cub);
-bool	load_and_check(t_cub *cub);
+
+//check_valid_map_2
+int		fill_floor_celling(int index, char *file, t_cub *cub);
+void	fill_floor_celling_2(t_cub *cub, int index, char *line);
+char	*skip_space(char *str);
+int		is_valid(char *file);
+bool	check_name(char *file);
+
+//parsing_directions
+void	fill_direction_2(t_cub *cub, int index, char *line);
+int		fill_direction(int index,char *file, t_cub *cub);
+int		directions_texture(char **file, t_cub *cub);
+
+//parsing_loading_map
+char	**load_file(char *file, t_cub *cub);
+char	**load_info(char **file, t_cub *cub);
+char	**load_map(char **file, t_cub *cub);
+
+
+//free
+void    ft_free_all(t_cub *cub);
+void    ft_free_tab(char **tab);
+
+//init
+int    init_all(t_cub *cub);
 
 int		ft_count_word(char const *s, char c);
 char	*ft_malloc(char const *s, int start, int end);
 char	**ft_split(char const *s, char c);
 void	ft_free_all_split(char **tab, int last);
-int	
-	extern_loop(const char *s, int i, char c, int flag);
+int		extern_loop(const char *s, int i, char c, int flag);
 
 #endif
 

@@ -6,11 +6,13 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:03:49 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 13:56:56 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:46:08 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void    ft_free_tab(char **tab);
 
 void    ft_free_all(t_cub *cub)
 {
@@ -31,48 +33,48 @@ void    ft_free_all(t_cub *cub)
     }
     if (cub->EA)
     {
-        ft_free(cub->EA);
+        free(cub->EA);
         cub->EA = NULL;
     }
     if (cub->NO)
     {
-        ft_free(cub->NO);
+        free(cub->NO);
         cub->NO = NULL;
     }
     if (cub->SO)
     {
-        ft_free(cub->SO);
+        free(cub->SO);
         cub->SO = NULL;   
     }
     if (cub->WE)
     {
-        ft_free(cub->WE);
+        free(cub->WE);
         cub->WE = NULL;   
     }
     if (cub->floor)
     {
-        ft_free(cub->floor);
+        free(cub->floor);
         cub->floor = NULL;   
     }
     if (cub->celling)
     {
-        ft_free(cub->celling);
+        free(cub->celling);
         cub->celling = NULL;   
     }
     if (cub->C)
     {
-        ft_free_int_tab(cub->C);
+        free(cub->C);
     }
     if (cub->F)
     {
-        ft_free_int_tab(cub->F);
+        free(cub->F);
     }
 }
 
-void    ft_free_int_tab(int *tab)
-{
-    free(tab);
-}
+// void    ft_free_int_tab(int *tab)
+// {
+//     free(tab);
+// }
 
 void    ft_free_tab(char **tab)
 {
@@ -85,7 +87,7 @@ void    ft_free_tab(char **tab)
     free(tab);
 }
 
-void    ft_free(char *file)
-{
-    free(file);
-}
+// void    ft_free(char *file)
+// {
+//     free(file);
+// }

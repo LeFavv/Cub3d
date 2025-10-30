@@ -6,11 +6,12 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:13:23 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:24:30 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:41:42 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/get_next_line.h"
 
 void	fill_direction_2(t_cub *cub, int index, char *line); //parsing_directions
 int		fill_direction(int index,char *file, t_cub *cub); //parsing_directions

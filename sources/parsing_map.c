@@ -6,11 +6,12 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:13:30 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:15:19 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:41:53 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/get_next_line.h"
 
 bool	load_and_check(t_cub *cub); //parsing_map
 bool	check_general(t_cub *cub); //parsing_map

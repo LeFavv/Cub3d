@@ -6,11 +6,12 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:20:18 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:21:39 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:41:38 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/get_next_line.h"
 
 bool	check_numbers(int *tab); //parsing_colours
 bool	check_rgb_str(t_cub *cub); //parsing_colours

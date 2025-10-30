@@ -6,11 +6,12 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:13:27 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:16:19 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:41:49 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/get_next_line.h"
 
 bool	floor_celling(char c); //parsing_map_char
 bool	player_char(char c); //parsing_map_char

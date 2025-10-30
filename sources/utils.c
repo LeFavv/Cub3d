@@ -6,13 +6,14 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:35:26 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:17:24 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:53:26 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/get_next_line.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		double_tab_lenght(char **tab); //utils
 int		ft_atoi(char *str); //utils
 int		nb_line_info(char **file, t_cub *cub); //utils

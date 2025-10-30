@@ -6,11 +6,12 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:13:15 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:23:36 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:41:18 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/get_next_line.h"
 
 int		fill_floor_celling(int index, char *file, t_cub *cub);  //check_valid_map_2
 void	fill_floor_celling_2(t_cub *cub, int index, char *line);  //check_valid_map_2

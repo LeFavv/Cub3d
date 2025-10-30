@@ -6,11 +6,12 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:13:17 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:19:22 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/10/30 15:41:22 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/get_next_line.h"
 
 void	check_valid_space(t_cub **cub, int f); //check_valid_map
 bool	check_zero_leak(t_cub *cub); //check_valid_map
