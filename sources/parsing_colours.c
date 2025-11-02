@@ -6,27 +6,26 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:20:18 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:41:38 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:05:59 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/get_next_line.h"
 
-bool	check_numbers(int *tab); //parsing_colours
-bool	check_rgb_str(t_cub *cub); //parsing_colours
-int		check_rgb_str_2(t_cub *cub); //parsing_colours
-void	ft_check_colours_1(t_cub *cub); //parsing_colours
-void	ft_check_colours_2(t_cub *cub); //parsing_colours
+bool	check_numbers(int *tab);
+bool	check_rgb_str(char *str);
+int		check_rgb_str_2(t_cub *cub);
+void	ft_check_colours_1(t_cub *cub);
+void	ft_check_colours_2(t_cub *cub);
 
 bool	check_numbers(int *tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 3)
 	{
-		// printf("valeur de tab[i] = %d\n", tab[i]);
 		if (tab[i] < 0 || tab[i] > 255)
 			return (false);
 		i++;
@@ -34,36 +33,23 @@ bool	check_numbers(int *tab)
 	return (true);
 }
 
-bool		check_rgb_str(t_cub *cub) //possible de faire un truc universel en prenant en parametre une string et pas cub
+bool	check_rgb_str(char *str)
 {
-	int i = 0;
-	int count = 0;
-	// printf("|%s|\n", cub->floor);
-	if (!cub->floor || !cub->celling)
-		return (false);
-	while (i < (int)ft_strlen(cub->floor) - 1)
-	{
-		if (!(cub->floor[i] >= '0' && cub->floor[i] <= '9'))
-		{
-			if (cub->floor[i] == ',')
-				count++;
-			else if (!((cub->floor[i] >= 9 && cub->floor[i] <= 13) || cub->floor[i] == 32))
-				return (printf("1\n"), false);
-		}
-		i++;
-	}
-	if (count != 2)
-		return (false);
-	count = 0;
+	int	i;
+	int	count;
+
 	i = 0;
-	while (i < (int)ft_strlen(cub->celling) - 1)
+	count = 0;
+	if (!str)
+		return (false);
+	while (i < (int)ft_strlen(str) - 1)
 	{
-		if (!(cub->celling[i] >= '0' && cub->celling[i] <= '9'))
+		if (!(str[i] >= '0' && str[i] <= '9'))
 		{
-			if (cub->celling[i] == ',')
+			if (str[i] == ',')
 				count++;
-			else if (!((cub->celling[i] >= 9 && cub->celling[i] <= 13) || cub->celling[i] == 32))
-				return (printf("1\n"), false);
+			else if (!((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
+				return (false);
 		}
 		i++;
 	}
@@ -74,7 +60,6 @@ bool		check_rgb_str(t_cub *cub) //possible de faire un truc universel en prenant
 
 int	check_rgb_str_2(t_cub *cub)
 {
-	// printf("je rentre la\n");
 	if (ft_strlen(cub->celling) < 5 || ft_strlen(cub->celling) > 11)
 		return (0);
 	if (ft_strlen(cub->floor) < 5 || ft_strlen(cub->floor) > 11)
@@ -84,32 +69,30 @@ int	check_rgb_str_2(t_cub *cub)
 
 void	ft_check_colours_1(t_cub *cub)
 {
-    char **values;
-    int i = 0;
-    
-    values = ft_split(cub->floor, ',');
-    
-    while (values[i] && i < 3)
-    {
-        cub->F[i] = ft_atoi(values[i]);
-        i++;
-    }
-    
-    ft_free_tab(values);
+	char	**values;
+	int		i;
+
+	i = 0;
+	values = ft_split(cub->floor, ',');
+	while (values[i] && i < 3)
+	{
+		cub->F[i] = ft_atoi(values[i]);
+		i++;
+	}
+	ft_free_tab(values);
 }
 
 void	ft_check_colours_2(t_cub *cub)
 {
-    char **values;
-    int i = 0;
-    
-    values = ft_split(cub->celling, ',');
-    
-    while (values[i] && i < 3)
-    {
-        cub->C[i] = ft_atoi(values[i]);
-        i++;
-    }
-    
-    ft_free_tab(values);
+	char	**values;
+	int		i;
+
+	i = 0;
+	values = ft_split(cub->celling, ',');
+	while (values[i] && i < 3)
+	{
+		cub->C[i] = ft_atoi(values[i]);
+		i++;
+	}
+	ft_free_tab(values);
 }

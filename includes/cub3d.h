@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:41:17 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:57:34 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:03:04 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ int		nb_line_info(char **file, t_cub *cub);
 int		nb_line(char *file, t_cub *cub);
 
 //check_valid_map
-void	check_valid_space(t_cub **cub, int f);
 bool	check_zero_leak(t_cub *cub);
 bool	check_sides(t_cub *cub);
 bool	check_map_spaces(t_cub *cub);
 bool	check_map(t_cub *cub);
+bool	check_map_2(char *str);
 
 //parsing_colours
 bool	check_numbers(int *tab);
-bool	check_rgb_str(t_cub *cub);
+bool	check_rgb_str(char *str);
 int		check_rgb_str_2(t_cub *cub);
 void	ft_check_colours_1(t_cub *cub);
 void	ft_check_colours_2(t_cub *cub);
@@ -75,6 +75,10 @@ void	fill_floor_celling_2(t_cub *cub, int index, char *line);
 char	*skip_space(char *str);
 int		is_valid(char *file);
 bool	check_name(char *file);
+
+//check_valid_map_3
+void	check_valide_space_2(t_cub **cub, int i, int j, int k);
+void	check_valid_space(t_cub **cub, int f);
 
 //parsing_directions
 void	fill_direction_2(t_cub *cub, int index, char *line);
@@ -88,8 +92,10 @@ char	**load_map(char **file, t_cub *cub);
 
 
 //free
-void    ft_free_all(t_cub *cub);
 void    ft_free_tab(char **tab);
+void    ft_free_all(t_cub *cub);
+void    ft_free_all_2(t_cub *cub);
+void    ft_free_all_3(t_cub *cub);
 
 //init
 int    init_all(t_cub *cub);

@@ -6,17 +6,17 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:13:27 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:41:49 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:08:24 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/get_next_line.h"
 
-bool	floor_celling(char c); //parsing_map_char
-bool	player_char(char c); //parsing_map_char
-bool	check_map_char(t_cub *cub); //parsing_map_char
-bool	valid_char(char c); //parsing_map_char
+bool	floor_celling(char c);
+bool	player_char(char c);
+bool	check_map_char(t_cub *cub);
+bool	valid_char(char c);
 
 bool	floor_celling(char c)
 {
@@ -25,21 +25,20 @@ bool	floor_celling(char c)
 	else if ((c >= 9 && c <= 23) || c == 32)
 		return (true);
 	else
-		return (printf("\n%c\n", c), false);
+		return (false);
 }
 
 bool	player_char(char c)
 {
-	// printf("je rentre la\n");
 	if (c == 'E' || c == 'W' || c == 'S' || c == 'N')
 		return (true);
-	return (printf("\n2\n"), false);
+	return (false);
 }
 
 bool	check_map_char(t_cub *cub)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	count_player;
 
 	i = 0;
@@ -52,9 +51,7 @@ bool	check_map_char(t_cub *cub)
 			if (!floor_celling(cub->map[i][j]))
 			{
 				if (player_char(cub->map[i][j]))
-				{
 					count_player++;
-				}
 				else
 					return (false);
 			}
@@ -63,7 +60,7 @@ bool	check_map_char(t_cub *cub)
 		i++;
 	}
 	if (count_player != 1)
-				return (false);
+		return (false);
 	return (true);
 }
 

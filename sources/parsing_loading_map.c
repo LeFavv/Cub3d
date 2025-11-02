@@ -6,16 +6,16 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:13:25 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:41:46 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:07:45 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/get_next_line.h"
 
-char	**load_file(char *file, t_cub *cub); //parsing_loading_map
-char	**load_info(char **file, t_cub *cub); //parsing_loading_map
-char	**load_map(char **file, t_cub *cub); //parsing_loading_map
+char	**load_file(char *file, t_cub *cub);
+char	**load_info(char **file, t_cub *cub);
+char	**load_map(char **file, t_cub *cub);
 
 char	**load_file(char *file, t_cub *cub)
 {
@@ -48,7 +48,7 @@ char	**load_file(char *file, t_cub *cub)
 
 char	**load_info(char **file, t_cub *cub)
 {
-	int 	lines;
+	int		lines;
 	char	**info;
 	int		i;
 
@@ -60,7 +60,6 @@ char	**load_info(char **file, t_cub *cub)
 	while (i < lines)
 	{
 		info[i] = ft_strdup(file[i]);
-		// info[i] = file[i];
 		i++;
 	}
 	info[i] = NULL;
@@ -71,7 +70,7 @@ char	**load_map(char **file, t_cub *cub)
 {
 	char	**map;
 	int		i;
-	
+
 	i = 0;
 	map = malloc(sizeof(char *) * (cub->line_total - cub->line_info + 1));
 	if (!map)
@@ -79,7 +78,6 @@ char	**load_map(char **file, t_cub *cub)
 	while (file[cub->line_info + i])
 	{
 		map[i] = ft_strdup(file[cub->line_info + i]);
-		// map[i] = file[cub->line_info + i];
 		i++;
 	}
 	map[i] = NULL;

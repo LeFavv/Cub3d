@@ -6,7 +6,7 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 13:35:26 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:53:26 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:10:58 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "../includes/get_next_line.h"
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		double_tab_lenght(char **tab); //utils
-int		ft_atoi(char *str); //utils
-int		nb_line_info(char **file, t_cub *cub); //utils
-int		nb_line(char *file, t_cub *cub); //utils
+int		double_tab_lenght(char **tab);
+int		ft_atoi(char *str);
+int		nb_line_info(char **file, t_cub *cub);
+int		nb_line(char *file, t_cub *cub);
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -33,7 +33,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int	double_tab_lenght(char **tab)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (tab[i])
 	{
 		i++;
@@ -43,9 +45,9 @@ int	double_tab_lenght(char **tab)
 
 int	ft_atoi(char *str)
 {
-	int nb;
-	int i;
-	
+	int	nb;
+	int	i;
+
 	nb = 0;
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
@@ -60,7 +62,7 @@ int	ft_atoi(char *str)
 
 int	nb_line_info(char **file, t_cub *cub)
 {
-	int i ;
+	int	i;
 	int	j;
 
 	i = 0;

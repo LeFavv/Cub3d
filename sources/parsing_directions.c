@@ -6,22 +6,22 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:13:23 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:41:42 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/11/02 17:07:13 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/get_next_line.h"
 
-void	fill_direction_2(t_cub *cub, int index, char *line); //parsing_directions
-int		fill_direction(int index,char *file, t_cub *cub); //parsing_directions
-int		directions_texture(char **file, t_cub *cub); //parsing_directions
+void	fill_direction_2(t_cub *cub, int index, char *line);
+int		fill_direction(int index, char *file, t_cub *cub);
+int		directions_texture(char **file, t_cub *cub);
 
 void	fill_direction_2(t_cub *cub, int index, char *line)
 {
 	if (index == 1)
 		cub->NO = line;
-	else if (index  == 2)
+	else if (index == 2)
 		cub->SO = line;
 	else if (index == 3)
 		cub->WE = line;
@@ -29,7 +29,7 @@ void	fill_direction_2(t_cub *cub, int index, char *line)
 		cub->EA = line;
 }
 
-int	fill_direction(int index,char *file, t_cub *cub)
+int	fill_direction(int index, char *file, t_cub *cub)
 {
 	char	*line;
 	int		i;
@@ -58,8 +58,8 @@ int	fill_direction(int index,char *file, t_cub *cub)
 
 int	directions_texture(char **file, t_cub *cub)
 {
-	int i;
-	int index;
+	int	i;
+	int	index;
 
 	i = 0;
 	while (cub->info_map[i])

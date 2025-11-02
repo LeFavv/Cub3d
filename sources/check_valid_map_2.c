@@ -6,18 +6,18 @@
 /*   By: vafavard <vafavard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 15:13:15 by vafavard          #+#    #+#             */
-/*   Updated: 2025/10/30 15:41:18 by vafavard         ###   ########.fr       */
+/*   Updated: 2025/11/02 16:35:33 by vafavard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/get_next_line.h"
 
-int		fill_floor_celling(int index, char *file, t_cub *cub);  //check_valid_map_2
-void	fill_floor_celling_2(t_cub *cub, int index, char *line);  //check_valid_map_2
-char	*skip_space(char *str); //check_valid_map_2
-int		is_valid(char *file); //check_valid_map_2
-bool	check_name(char *file); //check_valid_map_2
+int		fill_floor_celling(int index, char *file, t_cub *cub);
+void	fill_floor_celling_2(t_cub *cub, int index, char *line);
+char	*skip_space(char *str);
+int		is_valid(char *file);
+bool	check_name(char *file);
 
 int	fill_floor_celling(int index, char *file, t_cub *cub)
 {
@@ -56,10 +56,9 @@ void	fill_floor_celling_2(t_cub *cub, int index, char *line)
 
 char	*skip_space(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-
 	while (str[i])
 	{
 		if ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
@@ -70,7 +69,7 @@ char	*skip_space(char *str)
 	return (&str[i]);
 }
 
-int		is_valid(char *file)
+int	is_valid(char *file)
 {
 	if (ft_strncmp(skip_space(file), "NO", 2) == 0)
 		return (1);
@@ -99,20 +98,14 @@ bool	check_name(char *file)
 	i++;
 	if (file[i] == 'c')
 		valide += 1;
-	// else
-	// 	printf("1 %c\n", file[i]);
 	if (file[i + 1] == 'u')
 		valide += 1;
-	// else
-	// 	printf("2 %c\n", file[i + 1]);
 	if (file[i + 2] == 'b')
 		valide += 1;
 	if (file[i + 3] != '\0')
 		return (false);
-	// else
-	// 	printf("3 %c\n", file[i + 2]);
 	if (valide == 3)
 		return (true);
 	else
-		return (/*printf("%d\n", valide), */false);
+		return (false);
 }
